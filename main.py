@@ -1,4 +1,4 @@
-# import numpy as np
+import numpy as np
 
 # # Hàm kích hoạt - Rectified Linear Unit (ReLU)
 # def relu(x):
@@ -77,4 +77,6 @@
 # X_test = np.random.rand(28*28, 1)
 # prediction = predict(X_test, W1, b1, W2, b2)
 # print(f"Dự đoán: {prediction[0]}")
-from input import X_train, Y_train
+from data import X_train, Y_train
+
+print(np.random.rand(784, 128))
