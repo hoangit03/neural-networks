@@ -26,7 +26,8 @@ draw = ImageDraw.Draw(img)
 font = pygame.font.Font(None, 36)
 reset_text = font.render('Reset', True, (255, 255, 255))
 reset_rect = reset_text.get_rect(center=(WIDTH // 2, HEIGHT - 50))
-image_count = 926
+image_count = 133
+
 # Vòng lặp chính
 running = True
 while running:
@@ -62,17 +63,10 @@ while running:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s and not drawing:
             # Lưu nét vẽ vào hình ảnh 28x28
             img_28x28 = img.resize((28, 28))
-<<<<<<< HEAD
-            folder_path = "image/zeta"
+            folder_path = "image/theta"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"zeta_{image_count}.png"  
-=======
-            folder_path = "C:/Users/Duc Anh/Desktop/daihoc/jaba/New folder/neural-networks/image/psi"
-            if not os.path.exists(folder_path):
-                os.makedirs(folder_path)
-            file_name = f"psi_{image_count}.png"  
->>>>>>> 89d491b8de1aeff01379cbcaa3f0e0ab2a7dea63
+            file_name = f"theta_{image_count}.png"  
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
             img_28x28.save(file_path)
