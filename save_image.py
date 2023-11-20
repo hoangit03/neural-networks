@@ -64,10 +64,10 @@ while running:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s and not drawing:
             # Lưu nét vẽ vào hình ảnh 28x28
             img_28x28 = img.resize((28, 28))
-            folder_path = "image/upsilon"
+            folder_path = "image/sigma"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"upsilon_{image_count}.png"  
+            file_name = f"sigma_{image_count}.png"  
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
             img_28x28.save(file_path)
