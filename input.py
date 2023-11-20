@@ -51,9 +51,7 @@ while running:
                     
                     grid = np.zeros((rows, cols))
                 elif classify_button.collidepoint(x, y):
-                    font = pygame.font.SysFont(None, 100)
-                    text = font.render("jdhas", True, (0, 255, 0))
-                    screen.blit(text, (10, height // 2)) 
+                    print(np.array(grid)) 
                 else:
                     drawing = True  # Bắt đầu nhấn giữ chuột để vẽ
 
