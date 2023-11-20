@@ -26,7 +26,7 @@ draw = ImageDraw.Draw(img)
 font = pygame.font.Font(None, 36)
 reset_text = font.render('Reset', True, (255, 255, 255))
 reset_rect = reset_text.get_rect(center=(WIDTH // 2, HEIGHT - 50))
-image_count = 1 
+image_count = 501
 # Vòng lặp chính
 running = True
 while running:
@@ -65,7 +65,7 @@ while running:
             folder_path = "image"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"delta_{image_count}.png"  
+            file_name = f"epsilon_{image_count}.png"  
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
             img_28x28.save(file_path)
