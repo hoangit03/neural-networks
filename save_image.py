@@ -26,7 +26,7 @@ draw = ImageDraw.Draw(img)
 font = pygame.font.Font(None, 36)
 reset_text = font.render('Reset', True, (255, 255, 255))
 reset_rect = reset_text.get_rect(center=(WIDTH // 2, HEIGHT - 50))
-image_count = 133
+image_count = 21
 
 # Vòng lặp chính
 running = True
@@ -63,10 +63,10 @@ while running:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s and not drawing:
             # Lưu nét vẽ vào hình ảnh 28x28
             img_28x28 = img.resize((28, 28))
-            folder_path = "image/theta"
+            folder_path = "image/lota"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"theta_{image_count}.png"  
+            file_name = f"lota_{image_count}.png"  
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
             img_28x28.save(file_path)
