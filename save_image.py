@@ -16,7 +16,7 @@ pygame.display.set_caption("Vẽ và Lưu Nét Vẽ")
 
 drawing = False
 last_pos = None
-radius = 8
+radius = 11
 
 # Tạo ảnh trống để vẽ
 img = Image.new('RGB', (WIDTH, HEIGHT), BG_COLOR)
@@ -26,7 +26,7 @@ draw = ImageDraw.Draw(img)
 font = pygame.font.Font(None, 36)
 reset_text = font.render('Reset', True, (255, 255, 255))
 reset_rect = reset_text.get_rect(center=(WIDTH // 2, HEIGHT - 50))
-image_count = 501
+image_count = 840
 # Vòng lặp chính
 running = True
 while running:
