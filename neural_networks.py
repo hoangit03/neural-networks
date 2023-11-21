@@ -1,53 +1,37 @@
 import numpy as np
 from sklearn.metrics import accuracy_score
 
+np.seterr(over='ignore') 
 
 class NeuralNetwork:
     def __init__(self):
-        self.w1 = np.random.rand(784, 145)
-        self.b1 = np.zeros((1, 145))
+        self.w1 = np.random.rand(784, 240)
+        self.b1 = np.zeros((1, 240))
 
-        self.w2 = np.random.rand(145, 72)
-        self.b2 = np.zeros((1, 72))
+        self.w2 = np.random.rand(240, 128)
+        self.b2 = np.zeros((1, 128))
 
-        self.w_output = np.random.rand(72, 24)
+        self.w_output = np.random.rand(128, 24)
         self.b_output = np.zeros((1, 24))
 
 
-    def _tanh(self,x):
-        return 2 / (1 + np.exp(-2 * x)) - 1
-
-    def _tanh_deriv(self,x):
-        return 1 - self.tanh(x)**2
     
-    def _relu(self,x):
-        return np.maximum(x * 1e-3 , x)
-
-    def _relu_deriv(self,x):
-        return np.where(x > 0, 1, 1e-3)
-    
-    def _sigmoid(self,x):
-        return 1 / (1 + np.exp(-x))
-
-    def _sigmoid_deriv(self,x):
-        return self._sigmoid(x) * (1 - self._sigmoid(x))
 
 
     def forward(self, input_data):
-        self.layer1 = self._tanh(np.dot(input_data , self.w1) + self.b1)
-        self.layer2 = self._tanh(np.dot(self.layer1 , self.w2) + self.b2)
-        self.output = self._sigmoid(np.dot(self.layer2 , self.w_output) + self.b_output)
+        self.layer1 = _tanh(np.dot(input_data , self.w1) + self.b1)
+        self.layer2 = _tanh(np.dot(self.layer1 , self.w2) + self.b2)
+        self.output = _sigmoid(np.dot(self.layer2 , self.w_output) + self.b_output)
         return self.output
-
     def backpropagate(self, input_data, error, learning_rate):
-        output_delta = error * self._sigmoid_deriv(self.output)
+        output_delta = error * _sigmoid_deriv(self.output)
      
 
         layer2_error = np.dot(output_delta , self.w_output.T)
-        layer2_delta = layer2_error * self._tanh_deriv(self.layer2)
+        layer2_delta = layer2_error * _tanh_deriv(self.layer2)
 
         layer1_error = np.dot(layer2_delta , self.w2.T)
-        layer1_delta = layer1_error * self._tanh_deriv(self.layer1)
+        layer1_delta = layer1_error * _tanh_deriv(self.layer1)
 
         self.w_output += np.dot(self.layer2.T , output_delta) * learning_rate
         self.b_output += np.sum(output_delta, axis=0, keepdims=True) * learning_rate
@@ -59,7 +43,7 @@ class NeuralNetwork:
         self.b1 += np.sum(layer1_delta, axis=0, keepdims=True) * learning_rate
 
 
-    def train(self, input_data, target_output, test_data, test_label, learning_rate=0.01, epochs=1000, ):
+    def train(self, input_data, target_output, test_data, test_label, learning_rate=0.001, epochs=1000, ):
         self.loss = []
         N = len(target_output)
         for epoch in range(epochs):
@@ -74,3 +58,21 @@ class NeuralNetwork:
             accuracy = accuracy_score(test_label, predictions)
             if (epoch + 1) % 50 == 0:
                 print(f"Epoch {epoch + 1}/{epochs}, Loss: {loss:.4f}, Accuracy: {accuracy:.4f}")
+
+def _tanh(x):
+        return 2 / (1 + np.exp(-2 * x)) - 1
+
+def _tanh_deriv(x):
+    return 1 - _tanh(x)**2
+
+def _relu(x):
+    return np.maximum(x * 1e-3 , x)
+
+def _relu_deriv(x):
+    return np.where(x > 0, 1, 1e-3)
+
+def _sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def _sigmoid_deriv(x):
+    return _sigmoid(x) * (1 - _sigmoid(x))

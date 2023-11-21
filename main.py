@@ -7,15 +7,13 @@ from neural_networks import NeuralNetwork
 net = NeuralNetwork()
 
 
-print(X_train.shape)
-print(y_one_hot.shape)
 
 
-# net.train(X_train, Y_train,X_test,Y_test)
+net.train(X_train, y_one_hot,X_test,Y_test)
 
-# plt.plot(range(len(net.loss)), net.loss, color='blue', alpha=0.6)
-# plt.title('Loss Function')
-# plt.show()
+plt.plot(range(len(net.loss)), net.loss, color='blue', alpha=0.6)
+plt.title('Loss Function')
+plt.show()
 
 # fig, ax = plt.subplots(5, 5)
 # index = 0
