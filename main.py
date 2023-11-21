@@ -1,26 +1,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from data import X_train, y_one_hot, X_test,Y_test
+from data import X_train, Y_train_one_hot, X_test,Y_test
 from neural_networks import NeuralNetwork
 
-net = NeuralNetwork()
+# Khởi tạo mô hình neural network
+model = NeuralNetwork()
+
+# Normalize dữ liệu đầu vào
+X_train_normalized = X_train 
+X_test_normalized = X_test 
+
+# Huấn luyện mô hình
+
+model.train(X_train_normalized, Y_train_one_hot, X_test_normalized, Y_test, learning_rate=0.01, epochs=1500)
 
 
-
-
-net.train(X_train, y_one_hot,X_test,Y_test)
-
-plt.plot(range(len(net.loss)), net.loss, color='blue', alpha=0.6)
+plt.plot(range(len(model.loss)), model.loss, color='blue', alpha=0.6)
 plt.title('Loss Function')
 plt.show()
 
-# fig, ax = plt.subplots(5, 5)
-# index = 0
-# print(X_train)
-# for i in range(5):
-#   for j in range(5):
-#     ax[i,j].imshow(X_train[index])
-#     ax[i,j].set_axis_off()
-#     index+=1
-# plt.show()

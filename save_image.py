@@ -16,7 +16,7 @@ pygame.display.set_caption("Vẽ và Lưu Nét Vẽ")
 
 drawing = False
 last_pos = None
-radius = 21
+radius = 13
 
 # Tạo ảnh trống để vẽ
 img = Image.new('RGB', (WIDTH, HEIGHT), BG_COLOR)
