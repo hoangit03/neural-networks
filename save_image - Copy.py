@@ -27,7 +27,7 @@ font = pygame.font.Font(None, 36)
 reset_text = font.render('Reset', True, (255, 255, 255))
 reset_rect = reset_text.get_rect(center=(WIDTH // 2, HEIGHT - 50))
 
-image_count = 171
+image_count = 161
 
 # Vòng lặp chính
 running = True
