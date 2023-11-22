@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from data import X_train, Y_train_one_hot, X_test,Y_test
 from neural_networks import NeuralNetwork
 
-# Khởi tạo mô hình neural network
+# Khởi tạo mô hình neural network 
 model = NeuralNetwork()
 
 # Normalize dữ liệu đầu vào
