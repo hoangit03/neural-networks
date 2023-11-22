@@ -16,11 +16,8 @@ pygame.display.set_caption("Vẽ và Lưu Nét Vẽ")
 
 drawing = False
 last_pos = None
-<<<<<<< HEAD
-radius = 14
-=======
 radius = 13
->>>>>>> 38428e0ca25bf01a83dec846360a0557139503a6
+
 
 # Tạo ảnh trống để vẽ
 img = Image.new('RGB', (WIDTH, HEIGHT), BG_COLOR)
@@ -31,11 +28,9 @@ font = pygame.font.Font(None, 36)
 reset_text = font.render('Reset', True, (255, 255, 255))
 reset_rect = reset_text.get_rect(center=(WIDTH // 2, HEIGHT - 50))
 
-<<<<<<< HEAD
-image_count = 171
-=======
+
 image_count = 1
->>>>>>> 38428e0ca25bf01a83dec846360a0557139503a6
+
 
 # Vòng lặp chính
 running = True
@@ -72,17 +67,12 @@ while running:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s and not drawing:
             # Lưu nét vẽ vào hình ảnh 28x28
             img_28x28 = img.resize((28, 28))
-<<<<<<< HEAD
-            folder_path = "image/xi"
+
+            folder_path = "image/zeta"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"xi_{image_count}.png"  
-=======
-            folder_path = "image/beta"
-            if not os.path.exists(folder_path):
-                os.makedirs(folder_path)
-            file_name = f"beta_{image_count}.png"  
->>>>>>> 38428e0ca25bf01a83dec846360a0557139503a6
+            file_name = f"zeta_{image_count}.png"  
+
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
             img_28x28.save(file_path)
