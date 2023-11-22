@@ -24,17 +24,17 @@ beta = 40 # Điều chỉnh độ sáng theo nhu cầu
 contrast_enhanced_image = cv2.convertScaleAbs(blurred_image, alpha=alpha, beta=beta)
 
 # Làm sáng ảnh
-brightness_adjusted_image = cv2.addWeighted(contrast_enhanced_image, 1.3, contrast_enhanced_image, 0, 40)
+# brightness_adjusted_image = cv2.addWeighted(contrast_enhanced_image, 1.3, contrast_enhanced_image, 0, 40)
 
-# Làm mịn ảnh
-smoothed_image = cv2.fastNlMeansDenoisingColored(brightness_adjusted_image,None,10,10,7,21)
+# # Làm mịn ảnh
+# smoothed_image = cv2.fastNlMeansDenoisingColored(brightness_adjusted_image,None,10,10,7,21)
 
 # Hiển thị ảnh ban đầu và ảnh đã xử lý
 new_width = image.shape[1] * 20
 new_height = image.shape[0] * 20
 
 
-kernel = np.ones((3, 3), np.uint8) 
+kernel = np.ones((2, 2), np.uint8) 
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
 
 
@@ -43,13 +43,16 @@ ret, thresh_img = cv2.threshold(contrast_enhanced_image, 127, 255, cv2.THRESH_BI
 
 dilated_img = cv2.dilate(thresh_img, kernel, iterations=1)
 
-# contrasted_image = clahe.apply(smoothed_image)
 
-resized_img = cv2.resize(dilated_img, (new_width, new_height))
-cv2.imshow('Original Image', resized_img)
-# cv2.imshow('Processed Image', smoothed_image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+
+# contrasted_image = clahe.apply(smoothed_image)
+print(np.mean(dilated_img,axis=2))
+
+# resized_img = cv2.resize(dilated_img, (new_width, new_height))
+# cv2.imshow('Original Image', resized_img)
+# # cv2.imshow('Processed Image', smoothed_image)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
 
 
 # Tăng độ tương phản sử dụng phép biến đổi histogram
