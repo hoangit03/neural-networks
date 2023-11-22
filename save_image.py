@@ -9,7 +9,6 @@ BG_COLOR = (0, 0, 0)  # Màu nền
 
 # Khởi tạo Pygame
 pygame.init()
-
 # Tạo cửa sổ
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Vẽ và Lưu Nét Vẽ")
@@ -68,10 +67,12 @@ while running:
             # Lưu nét vẽ vào hình ảnh 28x28
             img_28x28 = img.resize((28, 28))
 
+
             folder_path = "data_test/zeta"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
             file_name = f"zeta_{image_count}.png"  
+
 
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
