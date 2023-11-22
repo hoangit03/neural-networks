@@ -68,10 +68,10 @@ while running:
             img_28x28 = img.resize((28, 28))
 
 
-            folder_path = "data_test/zeta"
+            folder_path = "image/iota"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"zeta_{image_count}.png"  
+            file_name = f"iota_{image_count}.png"  
 
 
             # file_name = f"aplpha_192.png" 
