@@ -68,11 +68,10 @@ while running:
             # Lưu nét vẽ vào hình ảnh 28x28
             img_28x28 = img.resize((28, 28))
 
-            folder_path = "image/nu"
+            folder_path = "image/kappa"
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            file_name = f"nu_{image_count}.png"  
-
+            file_name = f"kappa_{image_count}.png"  
             # file_name = f"aplpha_192.png" 
             file_path = os.path.join(folder_path, file_name)  
             img_28x28.save(file_path)
