@@ -19,8 +19,8 @@ if image is not None:
 blurred_image = cv2.GaussianBlur(image, (5, 5), 0)
 
 # Cải thiện độ tương phản
-alpha = 1.5  # Điều chỉnh độ tương phản theo nhu cầu
-beta = 30  # Điều chỉnh độ sáng theo nhu cầu
+alpha = 1.7  # Điều chỉnh độ tương phản theo nhu cầu
+beta = 40 # Điều chỉnh độ sáng theo nhu cầu
 contrast_enhanced_image = cv2.convertScaleAbs(blurred_image, alpha=alpha, beta=beta)
 
 # Làm sáng ảnh
@@ -34,11 +34,11 @@ new_width = image.shape[1] * 20
 new_height = image.shape[0] * 20
 
 
-kernel = np.ones((2, 2), np.uint8) 
+kernel = np.ones((3, 3), np.uint8) 
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
 
 
-ret, thresh_img = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)
+ret, thresh_img = cv2.threshold(contrast_enhanced_image, 127, 255, cv2.THRESH_BINARY)
 
 
 dilated_img = cv2.dilate(thresh_img, kernel, iterations=1)

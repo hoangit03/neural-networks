@@ -5,13 +5,13 @@ np.seterr(over='ignore')
 
 class NeuralNetwork:
     def __init__(self):
-        self.w1 = np.random.rand(784, 256) * np.sqrt(2/784)
+        self.w1 = np.random.rand(784, 256) * np.sqrt(1/784)
         self.b1 = np.zeros((1, 256))
 
-        self.w2 = np.random.rand(256, 128) * np.sqrt(2/256)
+        self.w2 = np.random.rand(256, 128) * np.sqrt(1/256)
         self.b2 = np.zeros((1, 128))
 
-        self.w_output = np.random.rand(128, 24) * np.sqrt(2/128)  
+        self.w_output = np.random.rand(128, 24) * np.sqrt(1/128)  
         self.b_output = np.zeros((1, 24))
 
     def _tanh(self, x):

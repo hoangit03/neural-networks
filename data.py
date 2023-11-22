@@ -13,8 +13,11 @@ folder_test = 'data_test'
 label_file = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma", "tau", "upsilon", "phi", "chi", "psi", "omega"]
 
 def process_image(image):
-    kernel = np.ones((2, 2), np.uint8)
-    ret, thresh_img = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)
+    alpha = 1.7  # Điều chỉnh độ tương phản theo nhu cầu
+    beta = 40 # Điều chỉnh độ sáng theo nhu cầu
+    contrast_enhanced_image = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
+    kernel = np.ones((3, 3), np.uint8)
+    ret, thresh_img = cv2.threshold(contrast_enhanced_image, 127, 255, cv2.THRESH_BINARY)
     dilated_img = cv2.dilate(thresh_img, kernel, iterations=1)
     height, width, channels = dilated_img.shape
     pixel = []

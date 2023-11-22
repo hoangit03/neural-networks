@@ -20,3 +20,4 @@ plt.plot(range(len(model.loss)), model.loss, color='blue', alpha=0.6)
 plt.title('Loss Function')
 plt.show()
 
+
