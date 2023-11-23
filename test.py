@@ -2,6 +2,7 @@ import os
 import cv2
 import numpy as np
 from sklearn.utils import shuffle
+import imgaug.augmenters as iaa
 
 
 folder_path = 'image' 
@@ -38,25 +39,47 @@ kernel = np.ones((2, 2), np.uint8)
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
 
 
-ret, thresh_img = cv2.threshold(contrast_enhanced_image, 127, 255, cv2.THRESH_BINARY)
 
 
-dilated_img = cv2.dilate(thresh_img, kernel, iterations=1)
+# dilated_img = cv2.dilate(thresh_img, kernel, iterations=1)
 
 
 
 # contrasted_image = clahe.apply(smoothed_image)
-print(np.mean(dilated_img,axis=2))
+# print(np.mean(dilated_img,axis=2))
 
 # resized_img = cv2.resize(dilated_img, (new_width, new_height))
 # cv2.imshow('Original Image', resized_img)
 # # cv2.imshow('Processed Image', smoothed_image)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
+height, width = image.shape[:2]
+M_left = cv2.getRotationMatrix2D((width / 2, height / 2), 20, 1)
+rotated_left = cv2.warpAffine(contrast_enhanced_image, M_left, (width, height))
 
+# Tạo ma trận quay cho xoay 20 độ về bên phải
+M_right = cv2.getRotationMatrix2D((width / 2, height / 2), -20, 1)
+rotated_right = cv2.warpAffine(contrast_enhanced_image, M_right, (width, height))
+
+
+ret, thresh_img = cv2.threshold(rotated_right, 127, 255, cv2.THRESH_BINARY)
+
+
+# dilated_img = cv2.dilate(image, kernel, iterations=1)
+dilated_img1 = cv2.dilate(thresh_img, kernel, iterations=1)
+dilated_img2 = cv2.dilate(rotated_left, kernel, iterations=1)
+dilated_img3 = cv2.dilate(rotated_right, kernel, iterations=1)
 
 # Tăng độ tương phản sử dụng phép biến đổi histogram
+# resized_img = cv2.resize(dilated_img, (new_width, new_height))/
 
+dilated_img = []
+dilated_img.extend([dilated_img1,dilated_img2,dilated_img3])
+dilated_img = np.array(dilated_img)
+new_arr = np.mean(dilated_img, axis=3)
+print(new_arr[0])
+
+# cv2.imshow('Original Image', resized_img)
 
 # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # # Thực hiện resize ảnh về kích thước cố định
@@ -76,5 +99,5 @@ print(np.mean(dilated_img,axis=2))
 # # cv2.imshow('Resized Image', resized_img2)
 # # cv2.imshow('Resized Image', contrasted_image)
 # # cv2.imshow('Resized Image', resized_img)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+cv2.waitKey(0)
+cv2.destroyAllWindows()
